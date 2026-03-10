@@ -1,0 +1,17 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+    <h2>Please enter the headline news to classify</h2>
+    <form action="/text_result" method="post">
+        <input type = "text"  name = "q" placeholder="There was a shooting">
+        <input type = "submit" value="classify">
+    </form>
+    </div>
+</body>
+
+
+
+

@@ -72,6 +72,21 @@ def llama_result():
 def paynow():
     return(render_template("paynow.html"))
 
+
+@app.route("/text_inference",methods=["GET","POST"])
+def text_inference():
+    return(render_template("text_inference.html"))
+
+@app.route("/text_result",methods=["GET","POST"])
+def text_result():
+    q = request.form.get("q")
+    text_model = joblib.load("model.pkl")
+    vectorizer = joblib.load("vectorizer.pkl")
+    X_emb = vectorizer.transform([q])
+    r = model.predict(X_emb)
+    return(render_template("text_result.html",r=r))
+
+
 @app.route("/userlog",methods=["GET","POST"])
 def userlog():
     conn = sqlite3.connect("user.db")
