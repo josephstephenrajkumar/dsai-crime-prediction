@@ -9,9 +9,9 @@ from groq import Groq
 import sqlite3
 import datetime
 
-#from dotenv import load_dotenv
-#if os.path.exists('.env'):
-#    load_dotenv()
+from dotenv import load_dotenv
+if os.path.exists('.env'):
+    load_dotenv()
 
 # for AWS, do not run this because not using .env
 #os.environ["GROQ_API_KEY"] = ""
@@ -83,7 +83,7 @@ def text_result():
     text_model = joblib.load("model.pkl")
     vectorizer = joblib.load("vectorizer.pkl")
     X_emb = vectorizer.transform([q])
-    r = model.predict(X_emb)
+    r = text_model.predict(X_emb)
     return(render_template("text_result.html",r=r))
 
 
